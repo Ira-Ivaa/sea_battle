@@ -8,7 +8,7 @@ def clear_screen() -> None:
 
 def header(current_player: int) -> None:
     print(f'''========================
-      ХОД ИГРОКА {current_player}
+       Player's turn {current_player}
 ========================''')
 
 def switch_player(current: int) -> int:
@@ -19,6 +19,7 @@ def select_boards(board1: list[list[str]], board2: list[list[str]], current: int
 
 def render_turn(my_board: list[list[str]], enemy_board: list[list[str]]) -> None:
     render_board(my_board, True)
+    print('')
     render_board(enemy_board, False)
 
 def check_win(enemy_board: list[list[str]], player: int) -> bool:
@@ -26,10 +27,10 @@ def check_win(enemy_board: list[list[str]], player: int) -> bool:
         return False
     else:
         clear_screen()
-        print('Игрок 1(2) победил!')
+        print('Player 1(2) win!')
         return True
 
-def pause(message: str = "Нажмите Enter, чтобы продолжить...") -> None:
+def pause(message: str = "Press Enter to continue...") -> None:
     input(message)
 
 def play_game() -> None:
@@ -49,14 +50,14 @@ def play_game() -> None:
         result = apply_shot(enemy_board, shot)
         match result:
             case 'repeat':
-                print("\\n⚠ Вы уже стреляли в эту клетку")
+                print("\\n⚠ You’ve already shot at this cell")
                 pause()
             case 'miss':
-                print("\\n❌ Промах")
+                print("\\n❌ Miss")
                 pause()
                 current = switch_player(current)
             case 'hit':
-                print("\\n🎯 Попадание!")
+                print("\\n🎯 Hit!")
                 if check_win(enemy_board, current):
                     break
                 pause()

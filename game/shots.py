@@ -10,7 +10,7 @@ def parse_shot(text: str) -> tuple[int, int] | None:
 
 def ask_shot() -> tuple[int, int] | None:
     while True:
-        text = input('Enter correct coordinates A-B 1-10 example(A5)')
+        text = input('Enter correct coordinates A-J 1-10 example(A5):')
         shot = parse_shot(text)
         if shot is not None: return shot
         print('No shots available. Enter correct coordinates A-B 1-10 example(A5)')
